@@ -198,7 +198,20 @@ body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
 
 <script type="module">
 import { createClient } from '@supabase/supabase-js';
-const supabase=createClient("https://cfdfwyensbzhvtxndleb.supabase.co","sb_publishable_K_YyDQ1heCrxgNlHGtGUNw_PKAJVE9n");
+
+let supabaseUrl = localStorage.getItem('yard_supabase_url')||"https://pgawbtxyxsfppathudgb.supabase.co";
+let supabaseKey = localStorage.getItem('yard_supabase_key')||"sb_publishable_nvt_xyJA4Iu9FEh9nXRUmA_ajmO-ny0";
+let supabase=createClient(supabaseUrl, supabaseKey);
+function saveSupaConfig(){
+  const u=document.getElementById('supaUrl')?.value.trim();
+  const k=document.getElementById('supaKey')?.value.trim();
+  if(!u||!k){ alert('Paste both URL and anon/publishable key'); return; }
+  localStorage.setItem('yard_supabase_url', u);
+  localStorage.setItem('yard_supabase_key', k);
+  document.getElementById('supaStatus').textContent='Saved! Reloading...';
+  setTimeout(()=>location.reload(), 800);
+}
+
 const OWNER_HASH="03d8b049cf7368b9822a9b3c15963d923e743899edb686c0c2cecc9cc6a7fef3";
 async function hashPwd(p){const b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
 let selectedDate=null, selectedTime=null, availability={}, bookings=[], employees=[];
@@ -304,16 +317,14 @@ function renderOwnerCalendar(){
   }).join('');
   $("prevMonth")?.addEventListener("click", ()=>{ ownerCalMonth--; if(ownerCalMonth<0){ ownerCalMonth=11; ownerCalYear--; } renderOwnerCalendar(); });
   $("nextMonth")?.addEventListener("click", ()=>{ ownerCalMonth++; if(ownerCalMonth>11){ ownerCalMonth=0; ownerCalYear++; } renderOwnerCalendar(); });
-  document.querySelectorAll('.saveAvail').forEach(b=>{
+  const curUrlEl=document.getElementById("currentSupaUrl"); if(curUrlEl) curUrlEl.textContent=supabaseUrl; const urlIn=document.getElementById("supaUrl"); if(urlIn && !localStorage.getItem("yard_supabase_url")) urlIn.value=supabaseUrl; document.querySelectorAll('.saveAvail').forEach(b=>{
     b.addEventListener('click', async e=>{
       const date=e.target.dataset.date;
       const raw=$("avail-"+date).value;
       const times=raw.split(',').map(s=>s.trim()).filter(Boolean);
       availability[date]=times;
-      const {data:ex}=await supabase.from('yard_availability').select('*').eq('date',date).maybeSingle();
-      if(ex){ await supabase.from('yard_availability').update({times}).eq('date',date); }
-      else { await supabase.from('yard_availability').insert({date, times}); }
-      e.target.textContent="Saved!"; setTimeout(()=>e.target.textContent="Save",1000);
+      const {data:ex, error:selErr}=await supabase.from('yard_availability').select('*').eq('date',date).maybeSingle(); if(selErr){ throw selErr; }
+      try{ let res; if(ex){ res=await supabase.from('yard_availability').update({times}).eq('date',date); } else { res=await supabase.from('yard_availability').insert({date, times}); } if(res.error) throw res.error; availability[date]=times; e.target.textContent="Saved! ✅"; setTimeout(()=>e.target.textContent="Save",1500); loadAvailability(); }catch(err){ e.target.textContent="Failed!"; alert("SAVE FAILED: "+(err.message||JSON.stringify(err))+"\nURL: "+supabaseUrl+"\n\nIf URL is wrong, fix it in yellow box at top."); e.target.textContent="Save"; }
       loadAvailability();
     });
   });
