@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Nocatee Yard Care - Jacksonville FL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script type="importmap">{"imports":{"@supabase/supabase-js":"https://esm.sh/@supabase/supabase-js@2.39.7"}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
+.mono{font-family:ui-monospace,monospace}
+@keyframes pop{0%{transform:scale(0.9);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.booked-pop{animation:pop 0.4s ease-out}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float{animation:float 3s ease-in-out infinite}
+</style>
+</head>
+<body class="max-w-[480px] mx-auto min-h-screen bg-[#f6f9f3]">
+
+<!-- CUSTOMER FRONT PAGE - PRIMARY VIEW - YARD WORK THEMED -->
+<div id="customerBox" class="min-h-screen">
+  <!-- Header - Yard themed -->
+  <div class="bg-white border-b sticky top-0 z-20">
+    <div class="p-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center text-white font-bold text-[18px] shadow-sm">🌿</div>
+        <div>
+          <div class="font-extrabold text-[15px] leading-none tracking-tight">NOCATEE YARD CARE</div>
+          <div class="text-[10px] text-zinc-500 mt-1 leading-none">made by a high schooler for homeowners</div>
+          <div class="text-[10px] text-green-700 font-semibold mt-0.5 tracking-wide">JACKSONVILLE, FL • NOCATEE</div>
+        </div>
+      </div>
+      <div class="flex gap-2"><button id="toEmployeeBtn" class="text-[11px] px-3 py-1.5 bg-zinc-100 border rounded-full">Employee</button><button id="toOwnerBtn" class="text-[11px] px-3 py-1.5 bg-black text-white rounded-full">Owner</button></div>
+    </div>
+  </div>
+
+  <!-- Hero - Yard work themed -->
+  <div class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-green-50 to-[#f6f9f3]"></div>
+    <div class="absolute top-0 right-0 text-[120px] opacity-[0.04] leading-none">🌱</div>
+    <div class="p-6 relative">
+      <div class="inline-flex items-center gap-2 bg-white border border-green-200 rounded-full px-3 py-1.5 text-[11px] font-medium text-green-800"><span class="w-2 h-2 bg-green-600 rounded-full animate-pulse"></span> Now booking in Nocatee • Same-week service</div>
+      <h1 class="text-[42px] font-extrabold leading-[0.85] tracking-tight mt-5">Yard work<br><span class="text-green-600">done right.</span></h1>
+      <p class="text-[14px] text-zinc-600 mt-3 leading-[1.5]">Local, reliable, affordable. Mowing, weeding, and trash bin cleaning — booked online in 30 seconds.</p>
+      
+      <!-- Trust badges -->
+      <div class="flex gap-2 mt-4">
+        <div class="flex items-center gap-1.5 bg-white border rounded-full px-3 py-1.5 text-[11px]"><span>✅</span> Local Nocatee</div>
+        <div class="flex items-center gap-1.5 bg-white border rounded-full px-3 py-1.5 text-[11px]"><span>💰</span> Cash on completion</div>
+        <div class="flex items-center gap-1.5 bg-white border rounded-full px-3 py-1.5 text-[11px]"><span>📅</span> You pick time</div>
+      </div>
+
+      <!-- Prices - Yard themed cards -->
+      <div class="mt-8 grid grid-cols-2 gap-3">
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">LAWN MOW</span><span class="text-[16px]">🌾</span></div><div class="text-[24px] font-extrabold mt-1">$25</div><div class="text-[11px] text-zinc-500">per mow • includes edging</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WEEDING / SIDE</span><span class="text-[16px]">🌿</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">per side of house</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">TRASH BIN</span><span class="text-[16px]">🗑️</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">one bin cleaned + deodorized</div></div>
+        <div class="bg-gradient-to-br from-green-600 to-green-700 text-white rounded-[18px] p-4 shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-green-100">BOTH BINS</span><span class="text-[16px]">✨</span></div><div class="text-[24px] font-extrabold mt-1">$30</div><div class="text-[11px] text-green-100">trash + recycling • best value</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="p-6 pt-2">
+    <div class="bg-white rounded-[24px] p-6 border shadow-sm">
+      <div class="flex justify-between items-start"><div><div class="font-bold text-[18px]">Book a Job</div><div class="text-[12px] text-zinc-500 mt-1">Pick a service and time — we handle the rest</div></div><div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-[18px] float">🗓️</div></div>
+      
+      <div class="mt-6 space-y-4">
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">YOUR NAME *</label><input id="custName" placeholder="John Smith" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">PHONE NUMBER * — Very important so we can reach you</label><input id="custPhone" type="tel" placeholder="(904) 555-0123" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">ADDRESS IN NOCATEE *</label><input id="custAddress" placeholder="123 Palm Valley Rd, Ponte Vedra, FL 32081" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">SERVICE *</label><select id="custService" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"><option value="">Select service</option><option value="Lawn Mow - $25">Lawn Mow - $25 per mow</option><option value="Weeding - $20 per side">Weeding - $20 per side of house</option><option value="Trash Bin Clean - $20">Trash Bin Clean - $20</option><option value="Trash + Recycling Clean - $30">Trash + Recycling Clean - $30 (best value)</option></select></div>
+        
+        <!-- PRICE CALCULATOR #7 -->
+        <div id="priceCalcBox" style="display:none" class="bg-green-50 border border-green-200 rounded-xl p-4">
+          <div class="text-[11px] font-semibold tracking-widest text-green-800">PRICE CALCULATOR</div>
+          <div id="calcOptions" class="mt-3"></div>
+          <div class="mt-3 pt-3 border-t border-green-200 flex justify-between items-center"><span class="text-[12px] font-semibold text-green-800">TOTAL PRICE:</span><span id="calcTotal" class="text-[22px] font-extrabold text-green-700">$0</span></div>
+        </div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">DATE & TIME *</label><div class="relative mt-2"><input id="custDateTime" readonly placeholder="Tap to pick from owner's calendar" class="w-full bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600 cursor-pointer"><button id="openCal" class="absolute right-2 top-2 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center">📅</button></div><div id="selectedSlotDisplay" class="hidden mt-2 text-[12px] bg-green-50 border border-green-200 text-green-800 p-3 rounded-xl font-medium"></div></div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">NOTES (gate code, side, etc.)</label><input id="custNotes" placeholder="e.g. Side yard, gate code 1234" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
+      </div>
+
+      <!-- Professional cash payment note ABOVE button -->
+      <div class="mt-7 bg-amber-50 border border-amber-200 rounded-xl p-3.5 flex gap-2.5">
+        <div class="text-[16px]">💵</div>
+        <div><div class="text-[11px] font-semibold tracking-widest text-amber-800">PAYMENT POLICY</div><div class="text-[12px] text-amber-900 mt-1 leading-[1.4]">Cash payment only, collected upon satisfactory completion of the job. No prepayment required. Receipt provided.</div></div>
+      </div>
+
+      <button id="bookBtn" class="w-full mt-5 bg-green-600 text-white rounded-xl py-4 font-bold text-[14px] tracking-wide hover:bg-green-700 active:scale-[0.99] shadow-sm">BOOK APPOINTMENT — WE'LL CONFIRM</button>
+      <div id="bookMsg" style="display:none" class="mt-4 text-[13px] p-3 rounded-xl"></div>
+      <div class="mt-3 text-[10px] text-zinc-400 text-center">Supabase Live • Jacksonville, FL • Secure booking</div>
+    </div>
+
+    <div class="mt-6 text-center text-[11px] text-zinc-500">Serving Nocatee, Ponte Vedra, Palm Valley<br>Questions? Text your address for a quick quote.</div>
+  </div>
+</div>
+
+<!-- BOOKED EFFECT MODAL -->
+<div id="bookedModal" style="display:none" class="fixed inset-0 bg-black/50 z-[60] p-6 flex items-center justify-center">
+  <div class="bg-white rounded-[24px] p-8 w-full max-w-[340px] text-center booked-pop">
+    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto text-[32px]">✅</div>
+    <div class="font-extrabold text-[22px] mt-4 tracking-tight">Appointment Booked!</div>
+    <div id="bookedDetails" class="text-[13px] text-zinc-600 mt-2 leading-[1.4]"></div>
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-800">Cash due after job completion • We'll text to confirm</div>
+    <button id="closeBooked" class="w-full mt-5 bg-black text-white rounded-full py-3 text-sm font-bold">Awesome — Got it!</button>
+  </div>
+</div>
+
+<!-- MINI CALENDAR POPUP -->
+<div id="calPopup" style="display:none" class="fixed inset-0 bg-black/40 z-50 p-4 flex items-center justify-center">
+  <div class="bg-white rounded-[20px] p-5 w-full max-w-[380px] max-h-[85vh] overflow-auto">
+    <div class="flex justify-between items-center"><span class="font-bold">Pick Date & Time</span><button id="closeCal" class="w-8 h-8 bg-zinc-100 rounded-full">✕</button></div>
+    <div class="text-[11px] text-zinc-500 mt-1">Only times owner set as available are shown</div>
+    <div id="calMonthLabel" class="font-bold mt-4 text-center"></div>
+    <div id="calGrid" class="grid grid-cols-7 gap-1 mt-3 text-center text-[12px]"></div>
+    <div id="calTimes" class="mt-5"></div>
+  </div>
+</div>
+
+<!-- OWNER VIEW -->
+<div id="ownerBox" style="display:none" class="min-h-screen p-4 pb-24 bg-[#f6f9f3]">
+  <div class="flex justify-between items-center py-3"><button id="ownerBack" class="text-[11px] bg-white border px-3 py-1.5 rounded-full">← Customer View</button><span class="font-bold text-sm">OWNER — ADMIN</span><button onclick="location.reload()" class="text-[11px] bg-white border px-3 py-1.5 rounded-full">Logout</button></div>
+
+  <div id="ownerLogin" class="bg-white rounded-[20px] p-6 border mt-4">
+    <div class="font-bold">Owner Login — Secure</div><div class="text-[11px] text-zinc-500 mt-1">Long encrypted password</div>
+    <input id="ownerNick" placeholder="owner" class="w-full mt-4 bg-zinc-50 border rounded-xl px-4 py-3"><input id="ownerPass" type="password" placeholder="Long owner password" class="w-full mt-3 bg-zinc-50 border rounded-xl px-4 py-3">
+    <button id="ownerLoginBtn" class="w-full mt-4 bg-black text-white rounded-xl py-3 font-semibold">Login as Owner</button>
+    <div id="ownerErr" style="display:none" class="mt-3 text-xs bg-red-50 border border-red-200 p-3 rounded-xl text-red-700"></div>
+  </div>
+
+  <div id="ownerContent" style="display:none">
+    <div class="mt-4 grid grid-cols-3 gap-3">
+      <div class="bg-black text-white rounded-xl p-3"><div class="text-[10px] text-zinc-400">PENDING</div><div id="statPending" class="font-bold text-lg">0</div></div>
+      <div class="bg-white border rounded-xl p-3"><div class="text-[10px] text-zinc-500">TODAY</div><div id="statToday" class="font-bold text-lg">0</div></div>
+      <div class="bg-white border rounded-xl p-3"><div class="text-[10px] text-zinc-500">CREW</div><div id="statCrew" class="font-bold text-lg">0</div></div>
+    </div>
+    <!-- EARNINGS TRACKER #10 - Auto updates -->
+    <div class="mt-4 bg-white rounded-[20px] border p-5">
+      <div class="flex justify-between items-center"><span class="font-bold text-sm">💰 Earnings Tracker — Auto-updates live</span><span class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded-full animate-pulse">LIVE</span></div>
+      <div class="text-[11px] text-zinc-500 mt-1">Auto-updates when jobs assigned/completed • Supabase realtime</div>
+      <div id="earningsGrid" class="mt-4 space-y-3"></div>
+      <div class="mt-4 pt-4 border-t grid grid-cols-3 gap-3 text-center"><div><div id="totalRevenue" class="font-extrabold text-[18px]">$0</div><div class="text-[10px] text-zinc-500">TOTAL REVENUE</div></div><div><div id="totalCompleted" class="font-extrabold text-[18px]">0</div><div class="text-[10px] text-zinc-500">JOBS DONE</div></div><div><div id="totalPending" class="font-extrabold text-[18px]">$0</div><div class="text-[10px] text-zinc-500">PENDING PAYOUT</div></div></div>
+    </div>
+    <div class="mt-4 bg-white rounded-[20px] border p-5">
+      <div class="font-bold text-sm">📅 Set Availability — Customers see only these times</div>
+      <div class="text-[11px] text-zinc-500 mt-1">Current month — enter times per day e.g. 9:00 AM, 10:00 AM, 2:00 PM</div>
+      <div id="ownerCalLabel" class="font-bold mt-4"></div>
+      <div id="ownerCalGrid" class="mt-3"></div>
+    </div>
+    <div class="mt-4 bg-white rounded-[20px] border p-5">
+      <div class="font-bold text-sm">👷 Add New Employee — Secure</div>
+      <div class="grid grid-cols-2 gap-3 mt-4"><input id="newEmpNick" placeholder="nickname e.g. mike" class="bg-zinc-50 border rounded-xl px-4 py-3 text-sm"><input id="newEmpPass" type="password" placeholder="long password 8+ chars" class="bg-zinc-50 border rounded-xl px-4 py-3 text-sm"></div>
+      <button id="addEmpBtn" class="w-full mt-3 bg-black text-white rounded-xl py-3 text-sm font-semibold">Add Employee — Encrypted</button>
+      <div id="empList" class="mt-4 space-y-2"></div>
+    </div>
+    <div class="mt-4 bg-white rounded-[20px] border p-5">
+      <div class="flex justify-between items-center"><span class="font-bold text-sm">📋 All Bookings — Admin Table</span><span id="bookCount" class="text-[11px] bg-zinc-100 px-2.5 py-1 rounded-full">0</span></div>
+      <div id="adminBookings" class="mt-4 space-y-3 max-h-[500px] overflow-auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMPLOYEE VIEW -->
+<div id="employeeBox" style="display:none" class="min-h-screen p-4 pb-24 bg-[#f6f9f3]">
+  <div class="flex justify-between items-center py-3"><button id="empBack" class="text-[11px] bg-white border px-3 py-1.5 rounded-full">← Customer View</button><span class="font-bold text-sm">EMPLOYEE — MY JOBS</span><button onclick="location.reload()" class="text-[11px] bg-white border px-3 py-1.5 rounded-full">Logout</button></div>
+  <div id="empLogin" class="bg-white rounded-[20px] p-6 border mt-4">
+    <div class="font-bold">Employee Login</div><input id="empNick" placeholder="nickname" class="w-full mt-4 bg-zinc-50 border rounded-xl px-4 py-3"><input id="empPass" type="password" placeholder="long password" class="w-full mt-3 bg-zinc-50 border rounded-xl px-4 py-3"><button id="empLoginBtn" class="w-full mt-4 bg-black text-white rounded-xl py-3 font-semibold">Login</button><div id="empErr" style="display:none" class="mt-3 text-xs bg-red-50 border p-3 rounded-xl text-red-700"></div>
+  </div>
+  <div id="empContent" style="display:none">
+    <div class="mt-4 bg-green-600 text-white rounded-[20px] p-5"><div class="text-[11px] text-green-100">LOGGED IN AS</div><div id="empNameLabel" class="font-bold text-lg mt-1">@EMP</div><div id="empJobsCount" class="text-[12px] text-green-100 mt-1">0 jobs</div><div class="grid grid-cols-3 gap-3 mt-4"><div class="bg-white/20 rounded-xl p-3 text-center"><div id="empEarned" class="font-extrabold text-[16px]">$0</div><div class="text-[10px] text-green-100">EARNED</div></div><div class="bg-white/20 rounded-xl p-3 text-center"><div id="empPendingEarn" class="font-extrabold text-[16px]">$0</div><div class="text-[10px] text-green-100">PENDING</div></div><div class="bg-white/20 rounded-xl p-3 text-center"><div id="empJobsDone" class="font-extrabold text-[16px]">0</div><div class="text-[10px] text-green-100">DONE</div></div></div><div class="text-[10px] text-green-100 mt-2 flex items-center gap-1"><span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> Auto-updates live when owner assigns you jobs</div></div>
+    <div class="mt-4 bg-white rounded-[20px] border p-5"><div class="font-bold text-sm">My Assigned Jobs — Auto-updates</div><div id="myJobs" class="mt-4 space-y-3"></div></div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from '@supabase/supabase-js';
+const supabase=createClient("https://cfdfwyensbzhvtxndleb.supabase.co","sb_publishable_K_YyDQ1heCrxgNlHGtGUNw_PKAJVE9n");
+const OWNER_HASH="03d8b049cf7368b9822a9b3c15963d923e743899edb686c0c2cecc9cc6a7fef3";
+async function hashPwd(p){const b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+let selectedDate=null, selectedTime=null, availability={}, bookings=[], employees=[];
+let calculatedPrice=0, weedingSides=1, lawnSize='small';
+const $=id=>document.getElementById(id);
+
+function updatePriceCalculator(){
+  const service=$("custService").value;
+  const box=$("priceCalcBox");
+  const opts=$("calcOptions");
+  const totalEl=$("calcTotal");
+  if(!service){ box.style.display="none"; calculatedPrice=0; return; }
+  box.style.display="block";
+  let html=""; let price=0;
+  
+  if(service.includes("Weeding")){
+    html=`<div><label class="text-[11px] text-zinc-600">How many sides of house need weeding?</label><select id="weedingSidesSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="1" ${weedingSides==1?'selected':''}>1 side — $20</option><option value="2" ${weedingSides==2?'selected':''}>2 sides — $40</option><option value="3" ${weedingSides==3?'selected':''}>3 sides — $60</option><option value="4" ${weedingSides==4?'selected':''}>4 sides (full house) — $80</option></select></div>`;
+    price=weedingSides*20;
+  } else if(service.includes("Lawn Mow")){
+    html=`<div><label class="text-[11px] text-zinc-600">Yard size?</label><select id="lawnSizeSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="small" ${lawnSize=='small'?'selected':''}>Small yard — $25</option><option value="medium" ${lawnSize=='medium'?'selected':''}>Medium yard — $35</option><option value="large" ${lawnSize=='large'?'selected':''}>Large yard — $45</option></select><div class="text-[10px] text-zinc-500 mt-1">Small = typical Nocatee lot, Medium = corner / larger, Large = 1/2 acre+</div></div>`;
+    if(lawnSize=='small') price=25; else if(lawnSize=='medium') price=35; else price=45;
+  } else if(service.includes("Trash Bin Clean - $20")){
+    html=`<div class="text-[12px] text-zinc-600">One trash bin thoroughly cleaned + deodorized</div>`; price=20;
+  } else if(service.includes("Trash + Recycling")){
+    html=`<div class="text-[12px] text-zinc-600">Both bins cleaned + deodorized — best value!</div>`; price=30;
+  }
+  opts.innerHTML=html;
+  totalEl.textContent="$"+price;
+  calculatedPrice=price;
+  // Re-attach listeners
+  const sideSel=$("weedingSidesSel"); if(sideSel){ sideSel.addEventListener("change", e=>{ weedingSides=parseInt(e.target.value); updatePriceCalculator(); }); }
+  const sizeSel=$("lawnSizeSel"); if(sizeSel){ sizeSel.addEventListener("change", e=>{ lawnSize=e.target.value; updatePriceCalculator(); }); }
+}
+
+$("custService").addEventListener("change", updatePriceCalculator);
+$("toOwnerBtn").addEventListener("click", ()=>{ $("customerBox").style.display="none"; $("ownerBox").style.display="block"; });
+$("toEmployeeBtn").addEventListener("click", ()=>{ $("customerBox").style.display="none"; $("employeeBox").style.display="block"; });
+$("ownerBack").addEventListener("click", ()=>{ $("ownerBox").style.display="none"; $("customerBox").style.display="block"; });
+$("empBack").addEventListener("click", ()=>{ $("employeeBox").style.display="none"; $("customerBox").style.display="block"; });
+$("openCal").addEventListener("click", ()=>{ $("calPopup").style.display="flex"; renderCustomerCalendar(); });
+$("closeCal").addEventListener("click", ()=>{ $("calPopup").style.display="none"; });
+$("custDateTime").addEventListener("click", ()=>{ $("calPopup").style.display="flex"; renderCustomerCalendar(); });
+$("closeBooked").addEventListener("click", ()=>{ $("bookedModal").style.display="none"; });
+
+function getMonthDays(year, month){ const days=[]; const d=new Date(year, month, 1); const firstDay=d.getDay(); const lastDate=new Date(year, month+1, 0).getDate(); for(let i=0;i<firstDay;i++) days.push(null); for(let i=1;i<=lastDate;i++) days.push(new Date(year, month, i)); return days; }
+
+function renderCustomerCalendar(){
+  const now=new Date(); const year=now.getFullYear(); const month=now.getMonth();
+  $("calMonthLabel").textContent=now.toLocaleString('default',{month:'long', year:'numeric'});
+  const days=getMonthDays(year, month);
+  const grid=$("calGrid"); grid.innerHTML='<div class="text-[10px] text-zinc-400">Sun</div><div class="text-[10px] text-zinc-400">Mon</div><div class="text-[10px] text-zinc-400">Tue</div><div class="text-[10px] text-zinc-400">Wed</div><div class="text-[10px] text-zinc-400">Thu</div><div class="text-[10px] text-zinc-400">Fri</div><div class="text-[10px] text-zinc-400">Sat</div>'+days.map(d=>{
+    if(!d) return '<div></div>';
+    const key=d.toISOString().split('T')[0];
+    const hasAvail=availability[key] && availability[key].length>0;
+    const isPast=d < new Date(new Date().setHours(0,0,0,0));
+    return `<button data-date="${key}" class="dayBtn aspect-square rounded-xl text-sm ${isPast?'bg-zinc-100 text-zinc-300': hasAvail?'bg-green-600 text-white font-bold':'bg-zinc-50 border'}">${d.getDate()}</button>`;
+  }).join('');
+  document.querySelectorAll('.dayBtn').forEach(b=>{
+    b.addEventListener('click', e=>{
+      if(e.target.classList.contains('text-zinc-300')) return;
+      selectedDate=e.target.dataset.date;
+      const times=availability[selectedDate]||[];
+      $("calTimes").innerHTML=`<div class="font-bold text-sm">Available times on ${selectedDate}</div><div class="grid grid-cols-2 gap-2 mt-3">${times.map(t=>`<button data-time="${t}" class="timeBtn bg-zinc-50 border rounded-full py-3 text-sm hover:bg-black hover:text-white">${t}</button>`).join('')||'<div class="text-xs text-zinc-400 col-span-2">No times set by owner for this day — owner must add times in admin panel</div>'}</div>`;
+      document.querySelectorAll('.timeBtn').forEach(tb=>{
+        tb.addEventListener('click', ev=>{
+          selectedTime=ev.target.dataset.time;
+          $("custDateTime").value=selectedDate+" at "+selectedTime;
+          $("selectedSlotDisplay").textContent="✅ Selected: "+selectedDate+" at "+selectedTime+" — will appear in your appointment box";
+          $("selectedSlotDisplay").style.display="block";
+          $("calPopup").style.display="none";
+        });
+      });
+    });
+  });
+}
+
+function renderOwnerCalendar(){
+  const now=new Date(); const year=now.getFullYear(); const month=now.getMonth();
+  $("ownerCalLabel").textContent=now.toLocaleString('default',{month:'long', year:'numeric'})+" — Enter times per day";
+  const days=getMonthDays(year, month);
+  const container=$("ownerCalGrid");
+  container.innerHTML=days.map(d=>{
+    if(!d) return '<div></div>';
+    const key=d.toISOString().split('T')[0];
+    const val=(availability[key]||[]).join(', ');
+    return `<div class="border-b py-3"><div class="flex justify-between items-center"><span class="font-medium text-sm">${d.toLocaleDateString()} (${d.toLocaleDateString('en-US',{weekday:'short'})})</span><span class="text-[10px] text-zinc-400">${key}</span></div><div class="flex gap-2 mt-2"><input id="avail-${key}" value="${val}" placeholder="e.g. 9:00 AM, 10:00 AM, 2:00 PM" class="flex-1 bg-zinc-50 border rounded-full px-4 py-2.5 text-xs"><button data-date="${key}" class="saveAvail bg-black text-white px-4 rounded-full text-xs font-bold">Save</button></div></div>`;
+  }).join('');
+  document.querySelectorAll('.saveAvail').forEach(b=>{
+    b.addEventListener('click', async e=>{
+      const date=e.target.dataset.date;
+      const raw=$("avail-"+date).value;
+      const times=raw.split(',').map(s=>s.trim()).filter(Boolean);
+      availability[date]=times;
+      const {data:ex}=await supabase.from('yard_availability').select('*').eq('date',date).maybeSingle();
+      if(ex){ await supabase.from('yard_availability').update({times}).eq('date',date); }
+      else { await supabase.from('yard_availability').insert({date, times}); }
+      e.target.textContent="Saved!"; setTimeout(()=>e.target.textContent="Save",1000);
+      loadAvailability();
+    });
+  });
+}
+
+async function loadAvailability(){
+  const {data}=await supabase.from('yard_availability').select('*');
+  if(data){ availability={}; data.forEach(r=>{ availability[r.date]=r.times; }); }
+}
+async function loadBookings(){
+  const {data}=await supabase.from('yard_bookings').select('*').order('created_at',{ascending:false});
+  if(data){ bookings=data; $("bookCount").textContent=data.length; $("statPending").textContent=data.filter(b=>b.status==='pending').length; $("statToday").textContent=data.filter(b=>b.date===new Date().toISOString().split('T')[0]).length;
+    $("adminBookings").innerHTML=data.map(b=>`<div class="border rounded-[16px] p-4"><div class="flex justify-between"><span class="font-bold text-sm">${b.customer_name}</span><span class="text-[10px] px-2 py-1 rounded-full ${b.status==='pending'?'bg-amber-100 text-amber-800': b.status==='assigned'?'bg-blue-100 text-blue-800':'bg-green-100 text-green-800'}">${b.status}</span></div><div class="text-[12px] text-zinc-600 mt-1">📞 <a href="tel:${b.phone||''}" class="font-bold text-black underline">${b.phone||'no phone'}</a> • ${b.address}</div><div class="text-[12px] mt-1"><span class="font-medium">${b.service}</span> • ${b.date} at ${b.time} • $${b.price||''}</div><div class="text-[11px] text-zinc-500 mt-1">Notes: ${b.notes||'none'} • Assigned: ${b.assigned_to||'not assigned'}</div><div class="flex gap-2 mt-3"><select id="assign-${b.id}" class="flex-1 bg-zinc-50 border rounded-full px-3 py-2 text-xs"><option value="">Assign to...</option>${employees.map(e=>`<option value="${e.nickname}" ${b.assigned_to===e.nickname?'selected':''}>${e.nickname}</option>`).join('')}</select><button data-id="${b.id}" class="addJobBtn bg-black text-white px-4 py-2 rounded-full text-xs font-bold">Add Job</button></div></div>`).join('')||'<div class="text-xs text-zinc-400 py-8 text-center">No bookings yet — customers book from front page</div>';
+    document.querySelectorAll('.addJobBtn').forEach(btn=>{ btn.addEventListener('click', async e=>{ const id=e.target.dataset.id; const assignTo=$("assign-"+id).value; if(!assignTo){ alert("Pick employee"); return; } await supabase.from('yard_bookings').update({assigned_to:assignTo, status:'assigned'}).eq('id',id); e.target.textContent="Assigned!"; loadBookings(); }); });
+    // Update earnings tracker
+    updateEarningsTracker(data);
+  }
+}
+
+function updateEarningsTracker(allBookings){
+  const grid=$("earningsGrid");
+  if(!grid) return;
+  const completed=allBookings.filter(b=>b.status==='completed');
+  const assigned=allBookings.filter(b=>b.status==='assigned');
+  const pending=allBookings.filter(b=>b.status==='pending');
+  const totalRev=completed.reduce((s,b)=>s+(parseInt(b.price)||0),0);
+  const pendingVal=[...assigned, ...pending].reduce((s,b)=>s+(parseInt(b.price)||0),0);
+  $("totalRevenue").textContent="$"+totalRev;
+  $("totalCompleted").textContent=completed.length;
+  $("totalPending").textContent="$"+pendingVal;
+  
+  // Per employee
+  const byEmp={};
+  employees.forEach(emp=>{ if(emp.role==='employee'){ byEmp[emp.nickname]={completed:0, assigned:0, total:0, earned:0, pending:0}; } });
+  allBookings.forEach(b=>{
+    if(b.assigned_to && byEmp[b.assigned_to]){
+      byEmp[b.assigned_to].total++;
+      if(b.status==='completed'){ byEmp[b.assigned_to].completed++; byEmp[b.assigned_to].earned+=parseInt(b.price)||0; }
+      else { byEmp[b.assigned_to].assigned++; byEmp[b.assigned_to].pending+=parseInt(b.price)||0; }
+    }
+  });
+  grid.innerHTML=Object.entries(byEmp).map(([nick, stats])=>`<div class="flex justify-between items-center bg-zinc-50 border rounded-xl p-3"><div><div class="font-bold text-sm">${nick}</div><div class="text-[11px] text-zinc-500">${stats.completed} done • ${stats.assigned} assigned • ${stats.total} total</div></div><div class="text-right"><div class="font-bold text-sm text-green-700">$${stats.earned} earned</div><div class="text-[11px] text-zinc-500">$${stats.pending} pending</div></div></div>`).join('')||'<div class="text-xs text-zinc-400">Add employees and assign jobs to see earnings — auto-updates live</div>';
+}
+async function loadEmployees(){
+  const {data}=await supabase.from('yard_employees').select('*').order('created_at',{ascending:false});
+  if(data){ employees=data; $("statCrew").textContent=data.length; $("empList").innerHTML=data.map(emp=>`<div class="flex justify-between items-center py-2 border-b last:border-0"><div><div class="font-medium text-[13px]">${emp.nickname} ${emp.role==='owner'?'👑':''}</div><div class="text-[11px] text-zinc-500">${emp.role}</div></div><button data-nick="${emp.nickname}" class="delEmp text-[11px] bg-red-50 text-red-600 border px-3 py-1 rounded-full">Delete</button></div>`).join(''); 
+    document.querySelectorAll('.delEmp').forEach(b=>{ b.addEventListener('click', async ev=>{ const nick=ev.target.dataset.nick; if(!confirm("Delete "+nick+"?")) return; await supabase.from('yard_employees').delete().eq('nickname',nick); loadEmployees(); }); });
+  }
+}
+$("ownerLoginBtn").addEventListener("click", async ()=>{
+  const nick=$("ownerNick").value.trim().toLowerCase();
+  const pass=$("ownerPass").value;
+  $("ownerErr").style.display="none";
+  if(!nick||!pass){ $("ownerErr").textContent="Enter nickname + password"; $("ownerErr").style.display="block"; return; }
+  const ph=await hashPwd(pass);
+  if(ph!==OWNER_HASH){ $("ownerErr").textContent="Wrong owner password"; $("ownerErr").style.display="block"; return; }
+  let {data:ex}=await supabase.from('yard_employees').select('*').eq('nickname',nick).maybeSingle();
+  if(!ex){ await supabase.from('yard_employees').insert({nickname:nick, password_hash:ph, role:'owner'}); }
+  $("ownerLogin").style.display="none"; $("ownerContent").style.display="block"; loadAllOwner();
+  supabase.channel('yard').on('postgres_changes',{event:'*',schema:'public',table:'yard_bookings'},()=>loadBookings()).on('postgres_changes',{event:'*',schema:'public',table:'yard_availability'},()=>loadAvailability()).on('postgres_changes',{event:'*',schema:'public',table:'yard_employees'},()=>loadEmployees()).subscribe();
+});
+async function loadAllOwner(){ await loadAvailability(); renderOwnerCalendar(); await loadEmployees(); await loadBookings(); }
+$("addEmpBtn").addEventListener("click", async ()=>{
+  const nick=$("newEmpNick").value.trim().toLowerCase();
+  const pass=$("newEmpPass").value;
+  if(!nick||!pass||pass.length<8){ alert("Enter nickname + long password 8+"); return; }
+  const ph=await hashPwd(pass);
+  const {error}=await supabase.from('yard_employees').insert({nickname:nick, password_hash:ph, role:'employee'});
+  if(error){ alert(error.message); return; }
+  $("newEmpNick").value=""; $("newEmpPass").value=""; loadEmployees();
+});
+$("empLoginBtn").addEventListener("click", async ()=>{
+  const nick=$("empNick").value.trim().toLowerCase();
+  const pass=$("empPass").value;
+  $("empErr").style.display="none";
+  if(!nick||!pass){ $("empErr").textContent="Enter nickname + password"; $("empErr").style.display="block"; return; }
+  const ph=await hashPwd(pass);
+  const {data:emp}=await supabase.from('yard_employees').select('*').eq('nickname',nick).maybeSingle();
+  if(!emp||emp.password_hash!==ph){ $("empErr").textContent="Wrong password"; $("empErr").style.display="block"; return; }
+  $("empLogin").style.display="none"; $("empContent").style.display="block"; $("empNameLabel").textContent="@"+emp.nickname.toUpperCase();
+  loadMyJobs(nick);
+  supabase.channel('emp-'+nick).on('postgres_changes',{event:'*',schema:'public',table:'yard_bookings'},()=>loadMyJobs(nick)).subscribe();
+});
+async function loadMyJobs(nick){
+  const {data}=await supabase.from('yard_bookings').select('*').eq('assigned_to',nick).order('date',{ascending:true});
+  if(data){ 
+    $("empJobsCount").textContent=data.length+" jobs assigned";
+    // Update earnings for employee
+    const completed=data.filter(b=>b.status==='completed');
+    const pending=data.filter(b=>b.status!=='completed');
+    const earned=completed.reduce((s,b)=>s+(parseInt(b.price)||0),0);
+    const pendingEarn=pending.reduce((s,b)=>s+(parseInt(b.price)||0),0);
+    $("empEarned").textContent="$"+earned;
+    $("empPendingEarn").textContent="$"+pendingEarn;
+    $("empJobsDone").textContent=completed.length;
+    $("myJobs").innerHTML=data.map(b=>`<div class="border rounded-[16px] p-4 ${b.status==='completed'?'bg-zinc-50 opacity-60':''}"><div class="flex justify-between"><span class="font-bold text-sm">${b.date} at ${b.time}</span><span class="text-[10px] px-2 py-1 rounded-full bg-zinc-100">${b.status}</span></div><div class="font-medium text-[13px] mt-2">${b.customer_name} — ${b.service}</div><div class="text-[12px] text-zinc-600 mt-1">📞 <a href="tel:${b.phone||''}" class="font-bold underline">${b.phone||'no phone'}</a></div><div class="text-[12px] text-zinc-600 mt-1">${b.address}</div><div class="text-[11px] text-zinc-500 mt-1">$${b.price||''} • ${b.notes||''}</div><div class="grid grid-cols-2 gap-2 mt-3"><a href="https://maps.google.com/?q=${encodeURIComponent(b.address)}" target="_blank" class="text-center bg-white border rounded-full py-2 text-xs">📍 Maps</a><a href="tel:${b.phone||''}" class="text-center bg-black text-white rounded-full py-2 text-xs font-bold">📞 Call ${b.customer_name.split(' ')[0]}</a></div><button data-id="${b.id}" class="completeBtn w-full mt-2 bg-green-600 text-white rounded-full py-2.5 text-xs font-bold ${b.status==='completed'?'hidden':''}">Mark Complete</button></div>`).join('')||'<div class="text-xs text-zinc-400 py-8 text-center">No jobs assigned yet</div>';
+    document.querySelectorAll('.completeBtn').forEach(btn=>{ btn.addEventListener('click', async e=>{ const id=e.target.dataset.id; await supabase.from('yard_bookings').update({status:'completed'}).eq('id',id); loadMyJobs(nick); }); });
+  }
+}
+$("bookBtn").addEventListener("click", async ()=>{
+  const name=$("custName").value.trim();
+  const phone=$("custPhone").value.trim();
+  const address=$("custAddress").value.trim();
+  const service=$("custService").value;
+  const notes=$("custNotes").value.trim();
+  const msg=$("bookMsg");
+  msg.style.display="none";
+  if(!name||!phone||!address||!service||!selectedDate||!selectedTime){ msg.textContent="Please fill name, PHONE NUMBER, address, service, and pick date & time from calendar — phone is required so we can reach you"; msg.className="mt-4 text-[13px] p-3 rounded-xl bg-red-50 border border-red-200 text-red-700"; msg.style.display="block"; return; }
+  let price=calculatedPrice||25;
+  // Fallback if calculator didn't run
+  if(price==0){
+    if(service.includes("Weeding")) price=weedingSides*20;
+    else if(service.includes("Lawn Mow")){ if(lawnSize=='small') price=25; else if(lawnSize=='medium') price=35; else price=45; }
+    else if(service.includes("Trash Bin Clean - $20")) price=20;
+    else if(service.includes("$30")) price=30;
+  }
+  $("bookBtn").textContent="BOOKING..."; $("bookBtn").disabled=true;
+  const {error}=await supabase.from('yard_bookings').insert({customer_name:name, phone, address, service, date:selectedDate, time:selectedTime, datetime:selectedDate+" "+selectedTime, notes, price, status:'pending'});
+  if(error){ msg.textContent=error.message; msg.className="mt-4 text-[13px] p-3 rounded-xl bg-red-50 border border-red-200 text-red-700"; msg.style.display="block"; $("bookBtn").textContent="BOOK APPOINTMENT — WE'LL CONFIRM"; $("bookBtn").disabled=false; return; }
+  // BOOKED EFFECT
+  confetti({particleCount:120, spread:90, origin:{y:0.6}, colors:['#16a34a','#22c55e','#facc15']});
+  $("bookedDetails").innerHTML=`<strong>${name}</strong><br>📞 ${phone}<br>${service}<br>${selectedDate} at ${selectedTime}<br>${address}`;
+  $("bookedModal").style.display="flex";
+  $("custName").value=""; $("custPhone").value=""; $("custAddress").value=""; $("custService").value=""; $("custDateTime").value=""; $("custNotes").value=""; selectedDate=null; selectedTime=null; $("selectedSlotDisplay").style.display="none";
+  $("bookBtn").textContent="BOOK APPOINTMENT — WE'LL CONFIRM"; $("bookBtn").disabled=false;
+});
+loadAvailability();
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
