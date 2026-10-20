@@ -246,8 +246,19 @@ $("closeBooked").addEventListener("click", ()=>{ $("bookedModal").style.display=
 function getMonthDays(year, month){ const days=[]; const d=new Date(year, month, 1); const firstDay=d.getDay(); const lastDate=new Date(year, month+1, 0).getDate(); for(let i=0;i<firstDay;i++) days.push(null); for(let i=1;i<=lastDate;i++) days.push(new Date(year, month, i)); return days; }
 
 function renderCustomerCalendar(){
-  const now=new Date(); const year=now.getFullYear(); const month=now.getMonth();
-  $("calMonthLabel").textContent=now.toLocaleString('default',{month:'long', year:'numeric'});
+  const now=new Date(); 
+  // If no availability for current month, auto-show next month that has availability
+  let year=now.getFullYear(); let month=now.getMonth();
+  const hasAvailThisMonth=Object.keys(availability).some(k=>k.startsWith(`${year}-${String(month+1).padStart(2,'0')}`) && availability[k].length>0);
+  if(!hasAvailThisMonth){
+    // Find next month with availability
+    const availMonths=Object.keys(availability).filter(k=>availability[k].length>0).sort();
+    if(availMonths.length>0){
+      const next=availMonths.find(k=>k>now.toISOString().split('T')[0]);
+      if(next){ const d=new Date(next); year=d.getFullYear(); month=d.getMonth(); }
+    }
+  }
+  $("calMonthLabel").textContent=new Date(year, month, 1).toLocaleString('default',{month:'long', year:'numeric'})+ (hasAvailThisMonth?'':' — No times this month, showing next available');
   const days=getMonthDays(year, month);
   const grid=$("calGrid"); grid.innerHTML='<div class="text-[10px] text-zinc-400">Sun</div><div class="text-[10px] text-zinc-400">Mon</div><div class="text-[10px] text-zinc-400">Tue</div><div class="text-[10px] text-zinc-400">Wed</div><div class="text-[10px] text-zinc-400">Thu</div><div class="text-[10px] text-zinc-400">Fri</div><div class="text-[10px] text-zinc-400">Sat</div>'+days.map(d=>{
     if(!d) return '<div></div>';
@@ -275,17 +286,24 @@ function renderCustomerCalendar(){
   });
 }
 
+let ownerCalYear=new Date().getFullYear();
+let ownerCalMonth=new Date().getMonth();
+
 function renderOwnerCalendar(){
-  const now=new Date(); const year=now.getFullYear(); const month=now.getMonth();
-  $("ownerCalLabel").textContent=now.toLocaleString('default',{month:'long', year:'numeric'})+" — Enter times per day";
+  const year=ownerCalYear; const month=ownerCalMonth;
+  const monthName=new Date(year, month, 1).toLocaleString('default',{month:'long', year:'numeric'});
+  $("ownerCalLabel").innerHTML=`<div class="flex justify-between items-center"><button id="prevMonth" class="w-8 h-8 bg-zinc-100 rounded-full">‹</button><span>${monthName} — Enter times per day</span><button id="nextMonth" class="w-8 h-8 bg-zinc-100 rounded-full">›</button></div><div class="text-[11px] text-zinc-500 mt-1 font-normal">What happens when month ends? → Auto-rolls to next month. Old bookings stay in Admin Table forever. Use ‹ › to set next month early.</div>`;
   const days=getMonthDays(year, month);
   const container=$("ownerCalGrid");
   container.innerHTML=days.map(d=>{
     if(!d) return '<div></div>';
     const key=d.toISOString().split('T')[0];
     const val=(availability[key]||[]).join(', ');
-    return `<div class="border-b py-3"><div class="flex justify-between items-center"><span class="font-medium text-sm">${d.toLocaleDateString()} (${d.toLocaleDateString('en-US',{weekday:'short'})})</span><span class="text-[10px] text-zinc-400">${key}</span></div><div class="flex gap-2 mt-2"><input id="avail-${key}" value="${val}" placeholder="e.g. 9:00 AM, 10:00 AM, 2:00 PM" class="flex-1 bg-zinc-50 border rounded-full px-4 py-2.5 text-xs"><button data-date="${key}" class="saveAvail bg-black text-white px-4 rounded-full text-xs font-bold">Save</button></div></div>`;
+    const isPast=d < new Date(new Date().setHours(0,0,0,0));
+    return `<div class="border-b py-3 ${isPast?'opacity-50':''}"><div class="flex justify-between items-center"><span class="font-medium text-sm">${d.toLocaleDateString()} (${d.toLocaleDateString('en-US',{weekday:'short'})}) ${isPast?'<span class="text-[10px] text-zinc-400">— past</span>':''}</span><span class="text-[10px] text-zinc-400">${key}</span></div><div class="flex gap-2 mt-2"><input id="avail-${key}" value="${val}" placeholder="e.g. 9:00 AM, 10:00 AM, 2:00 PM" class="flex-1 bg-zinc-50 border rounded-full px-4 py-2.5 text-xs"><button data-date="${key}" class="saveAvail bg-black text-white px-4 rounded-full text-xs font-bold">Save</button></div></div>`;
   }).join('');
+  $("prevMonth")?.addEventListener("click", ()=>{ ownerCalMonth--; if(ownerCalMonth<0){ ownerCalMonth=11; ownerCalYear--; } renderOwnerCalendar(); });
+  $("nextMonth")?.addEventListener("click", ()=>{ ownerCalMonth++; if(ownerCalMonth>11){ ownerCalMonth=0; ownerCalYear++; } renderOwnerCalendar(); });
   document.querySelectorAll('.saveAvail').forEach(b=>{
     b.addEventListener('click', async e=>{
       const date=e.target.dataset.date;
