@@ -73,10 +73,10 @@ body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
         <div class="flex items-center gap-1.5 bg-white border rounded-full px-3 py-1.5 text-[11px]"><span>📅</span> You pick time</div>
       </div>
 
-      <!-- Prices - Updated cards: No lawn mowing, add mailbox + windows -->
+            <!-- Prices - V4 FINAL: NO  AT ALL, Trash Bin KEPT -->
       <div class="mt-8 grid grid-cols-2 gap-3">
-        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WEEDING / SIDE</span><span class="text-[16px]">🌿</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">per side of house • $80 whole house</div></div>
-        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">TRASH BIN</span><span class="text-[16px]">🗑️</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">one bin • both bins $30</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WEEDING / SIDE</span><span class="text-[16px]">🌿</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">per side • $80 whole house</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">TRASH BIN</span><span class="text-[16px]">🗑️</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">one bin cleaned • both $30</div></div>
         <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">MAILBOX PAINT</span><span class="text-[16px]">🎨</span></div><div class="text-[24px] font-extrabold mt-1">$50</div><div class="text-[11px] text-zinc-500">spray paint mailbox • fresh look</div></div>
         <div class="bg-gradient-to-br from-zinc-900 to-black text-white rounded-[18px] p-4 shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-300">WINDOW CLEAN</span><span class="text-[16px]">✨</span></div><div class="text-[24px] font-extrabold mt-1">$5</div><div class="text-[11px] text-zinc-300">per window • streak-free</div></div>
       </div>
@@ -92,7 +92,7 @@ body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
         <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">YOUR NAME *</label><input id="custName" placeholder="John Smith" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
         <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">PHONE NUMBER * — Very important so we can reach you</label><input id="custPhone" type="tel" placeholder="(904) 555-0123" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
         <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">ADDRESS IN NOCATEE *</label><input id="custAddress" placeholder="123 Palm Valley Rd, Ponte Vedra, FL 32081" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"></div>
-        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">SERVICE *</label><select id="custService" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"><option value="">Select service</option><option value="Weeding - $20 per side">Weeding - $20 per side ($80 whole house)</option><option value="Trash Bin Clean - $20">Trash Bin Clean - $20</option><option value="Trash + Recycling Clean - $30">Trash + Recycling Clean - $30 (best value)</option><option value="Mailbox Spray Paint - $50">Mailbox Spray Paint - $50</option><option value="Window Cleaning - $5 per window">Window Cleaning - $5 per window</option></select></div>
+        <div><label class="text-[11px] font-semibold tracking-widest text-zinc-500">SERVICE *</label><select id="custService" class="w-full mt-2 bg-zinc-50 border rounded-xl px-4 py-3.5 text-[15px] outline-none focus:bg-white focus:border-green-600"><option value="">Select service</option><option value="Weeding - $20 per side">Weeding - $20 per side ($80 whole house)</option><option value="Trash Bin Clean - $20">Trash Bin Clean - $20</option><option value="Trash + Recycling Clean - $30">Trash + Recycling Clean - $30</option><option value="Mailbox Spray Paint - $50">Mailbox Spray Paint - $50</option><option value="Window Cleaning - $5 per window">Window Cleaning - $5 per window</option></select></div>
         
         <!-- PRICE CALCULATOR #7 -->
         <div id="priceCalcBox" style="display:none" class="bg-green-50 border border-green-200 rounded-xl p-4">
@@ -215,7 +215,7 @@ function saveSupaConfig(){
 const OWNER_HASH="03d8b049cf7368b9822a9b3c15963d923e743899edb686c0c2cecc9cc6a7fef3";
 async function hashPwd(p){const b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
 let selectedDate=null, selectedTime=null, availability={}, bookings=[], employees=[];
-let calculatedPrice=0, weedingSides=1, lawnSize='small';
+let calculatedPrice=0, weedingSides=1;
 const $=id=>document.getElementById(id);
 
 function updatePriceCalculator(){
@@ -226,29 +226,28 @@ function updatePriceCalculator(){
   if(!service){ box.style.display="none"; calculatedPrice=0; return; }
   box.style.display="block";
   let html=""; let price=0;
-  
   if(service.includes("Weeding")){
-    html=`<div><label class="text-[11px] text-zinc-600">How many sides of house need weeding?</label><select id="weedingSidesSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="1" ${weedingSides==1?'selected':''}>1 side — $20</option><option value="2" ${weedingSides==2?'selected':''}>2 sides — $40</option><option value="3" ${weedingSides==3?'selected':''}>3 sides — $60</option><option value="4" ${weedingSides==4?'selected':''}>4 sides (full house) — $80</option></select></div>`;
+    html=`<div><label class="text-[11px] text-zinc-600">How many sides?</label><select id="weedingSidesSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="1" ${weedingSides==1?'selected':''}>1 side — $20</option><option value="2" ${weedingSides==2?'selected':''}>2 sides — $40</option><option value="3" ${weedingSides==3?'selected':''}>3 sides — $60</option><option value="4" ${weedingSides==4?'selected':''}>4 sides — $80</option></select></div>`;
     price=weedingSides*20;
   } else if(service.includes("Trash Bin Clean - $20")){
-    html=`<div class="text-[12px] text-zinc-600">One trash bin thoroughly cleaned + deodorized</div>`; price=20;
+    html=`<div class="text-[12px] text-zinc-600">One trash bin cleaned + deodorized</div>`; price=20;
   } else if(service.includes("Trash + Recycling")){
-    html=`<div class="text-[12px] text-zinc-600">Both bins cleaned + deodorized — best value!</div>`; price=30;
+    html=`<div class="text-[12px] text-zinc-600">Both bins cleaned — best value</div>`; price=30;
   } else if(service.includes("Mailbox")){
-    html=`<div class="text-[12px] text-zinc-600">Mailbox spray paint — includes prep & cleanup, color of your choice</div>`; price=50;
-  } else if(service.includes("Window Cleaning")){
-    html=`<div><label class="text-[11px] text-zinc-600">How many windows?</label><input id="windowCount" type="number" min="1" value="1" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><div class="text-[10px] text-zinc-500 mt-1">$5 per window • e.g. 10 windows = $50</div></div>`;
-    const wc = document.getElementById('windowCount')?.value || 1;
-    // price will be updated on input, default 5
-    price = 5 * parseInt(wc || 1);
+    html=`<div class="text-[12px] text-zinc-600">Mailbox spray paint $50 flat — includes prep</div>`; price=50;
+  } else if(service.includes("Window")){
+    html=`<div><label class="text-[11px] text-zinc-600">How many windows?</label><input id="windowCount" type="number" min="1" value="1" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><div class="text-[10px] text-zinc-500 mt-1">$5 each — 10 windows = $50</div></div>`;
+    const wc = document.getElementById('windowCount');
+    const cnt = wc ? parseInt(wc.value)||1 : 1;
+    price = cnt * 5;
   }
   opts.innerHTML=html;
   totalEl.textContent="$"+price;
   calculatedPrice=price;
-  // Re-attach listeners
   const sideSel=$("weedingSidesSel"); if(sideSel){ sideSel.addEventListener("change", e=>{ weedingSides=parseInt(e.target.value); updatePriceCalculator(); }); }
-  const winInput=$("windowCount"); if(winInput){ winInput.addEventListener("input", e=>{ const count=parseInt(e.target.value)||1; calculatedPrice=count*5; $("calcTotal").textContent="$"+calculatedPrice; }); }
+  const winInput=$("windowCount"); if(winInput){ winInput.addEventListener("input", e=>{ const c=parseInt(e.target.value)||1; calculatedPrice=c*5; $("calcTotal").textContent="$"+calculatedPrice; }); }
 }
+
 
 $("custService").addEventListener("change", updatePriceCalculator);
 $("toOwnerBtn").addEventListener("click", ()=>{ $("customerBox").style.display="none"; $("ownerBox").style.display="block"; });
@@ -441,9 +440,10 @@ $("bookBtn").addEventListener("click", async ()=>{
   // Fallback if calculator didn't run
   if(price==0){
     if(service.includes("Weeding")) price=weedingSides*20;
-    else if(service.includes("Mailbox")){ price=50; } else if(service.includes("Window Cleaning")){ const m = service.match(/(\d+) windows/); if(m) price=parseInt(m[1])*5; else price=5; }
     else if(service.includes("Trash Bin Clean - $20")) price=20;
     else if(service.includes("$30")) price=30;
+    else if(service.includes("Mailbox")) price=50;
+    else if(service.includes("Window")) { const count = parseInt(document.getElementById("windowCount")?.value||1); price=count*5; }
   }
   $("bookBtn").textContent="BOOKING..."; $("bookBtn").disabled=true;
   const {error}=await supabase.from('yard_bookings').insert({customer_name:name, phone, address, service, date:selectedDate, time:selectedTime, datetime:selectedDate+" "+selectedTime, notes, price, status:'pending'});
