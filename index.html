@@ -71,16 +71,17 @@ body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
         <div class="flex items-center gap-1.5 bg-white border rounded-full px-3 py-1.5 text-[11px]"><span>📅</span> You pick time</div>
       </div>
 
-                  <!-- Prices - V6: Added Raking $20/$40, Trash Bin KEPT, No Mowing -->
+                        <!-- Prices - V8 FINAL WORKING: Raking added, no  -->
       <div class="mt-8 grid grid-cols-2 gap-3">
-        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WEEDING / SIDE</span><span class="text-[16px]">🌿</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">per side • $80 whole house</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WEEDING / SIDE</span><span class="text-[16px]">🌿</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">per side • $80 whole</div></div>
         <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">TRASH BIN</span><span class="text-[16px]">🗑️</span></div><div class="text-[24px] font-extrabold mt-1">$20</div><div class="text-[11px] text-zinc-500">one bin • both $30</div></div>
-        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">MAILBOX PAINT</span><span class="text-[16px]">🎨</span></div><div class="text-[24px] font-extrabold mt-1">$40</div><div class="text-[11px] text-zinc-500">spray paint mailbox • $40 flat</div></div>
-        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WINDOW CLEAN</span><span class="text-[16px]">✨</span></div><div class="text-[24px] font-extrabold mt-1">$3</div><div class="text-[11px] text-zinc-500">per window • streak-free</div></div>
-        <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-[18px] p-4 shadow-sm col-span-2"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-amber-100">RAKING 🍂 NEW</span><span class="text-[16px]">🧹</span></div><div class="flex gap-3 mt-1"><div><div class="text-[22px] font-extrabold">$20</div><div class="text-[11px] text-amber-100">front OR back yard</div></div><div class="w-px bg-white/20"></div><div><div class="text-[22px] font-extrabold">$40</div><div class="text-[11px] text-amber-100">BOTH yards</div></div></div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">MAILBOX PAINT</span><span class="text-[16px]">🎨</span></div><div class="text-[24px] font-extrabold mt-1">$40</div><div class="text-[11px] text-zinc-500">spray paint • $40 flat</div></div>
+        <div class="bg-white rounded-[18px] p-4 border shadow-sm"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-zinc-500">WINDOW CLEAN</span><span class="text-[16px]">✨</span></div><div class="text-[24px] font-extrabold mt-1">$3</div><div class="text-[11px] text-zinc-500">per window • $3 each</div></div>
+        <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-[18px] p-4 shadow-sm col-span-2"><div class="flex justify-between"><span class="text-[11px] font-semibold tracking-widest text-amber-100">RAKING 🍂 NEW</span><span class="text-[16px]">🧹</span></div><div class="flex gap-3 mt-1"><div><div class="text-[22px] font-extrabold">$20</div><div class="text-[11px] text-amber-100">front OR back</div></div><div class="w-px bg-white/20"></div><div><div class="text-[22px] font-extrabold">$40</div><div class="text-[11px] text-amber-100">BOTH yards</div></div></div></div>
+      </div></div>
       </div>
     </div>
-  </div>
+  
 
   <!-- Booking Form -->
   <div class="p-6 pt-2">
@@ -116,7 +117,7 @@ body{font-family:'Inter',sans-serif;background:#f6f9f3;color:#111}
 
     <div class="mt-6 text-center text-[11px] text-zinc-500">Serving Nocatee, Ponte Vedra, Palm Valley<br>Questions? Text your address for a quick quote.</div>
   </div>
-</div>
+
 
 <!-- BOOKED EFFECT MODAL -->
 <div id="bookedModal" style="display:none" class="fixed inset-0 bg-black/50 z-[60] p-6 flex items-center justify-center">
@@ -236,14 +237,14 @@ function updatePriceCalculator(){
     html=`<div class="text-[12px] text-zinc-600">Mailbox spray paint $40 flat — includes prep</div>`; price=40;
   } else if(service.includes("Window")){
     html=`<div><label class="text-[11px] text-zinc-600">How many windows?</label><input id="windowCount" type="number" min="1" value="1" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><div class="text-[10px] text-zinc-500 mt-1">$3 each — 10 windows = $30</div></div>`;
-    const wc = document.getElementById('windowCount');
-    const cnt = wc ? parseInt(wc.value)||1 : 1;
-    price = cnt * 3;
+    const wc=document.getElementById('windowCount');
+    const cnt=wc?parseInt(wc.value)||1:1;
+    price=cnt*3;
   } else if(service.includes("Raking")){
-    html=`<div><label class="text-[11px] text-zinc-600">Which yard?</label><select id="rakingSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="front">Front yard — $20</option><option value="back">Back yard — $20</option><option value="both">Both yards — $40</option></select><div class="text-[10px] text-zinc-500 mt-1">Includes bagging leaves</div></div>`;
-    const rs = document.getElementById('rakingSel');
-    const val = rs ? rs.value : 'front';
-    price = (val === 'both') ? 40 : 20;
+    html=`<div><label class="text-[11px] text-zinc-600">Which yard?</label><select id="rakingSel" class="w-full mt-2 bg-white border rounded-full px-4 py-2.5 text-sm"><option value="front">Front yard — $20</option><option value="back">Back yard — $20</option><option value="both">Both yards — $40</option></select></div>`;
+    const rs=document.getElementById('rakingSel');
+    const val=rs?rs.value:'front';
+    price=(val==='both')?40:20;
   }
   opts.innerHTML=html;
   totalEl.textContent="$"+price;
@@ -448,7 +449,8 @@ $("bookBtn").addEventListener("click", async ()=>{
     else if(service.includes("Trash Bin Clean - $20")) price=20;
     else if(service.includes("$30")) price=30;
     else if(service.includes("Mailbox")) price=40;
-    else if(service.includes("Window")) { const count = parseInt(document.getElementById("windowCount")?.value||1); price=count*3; } else if(service.includes("Raking")) { const sel = document.getElementById("rakingSel")?.value||"front"; price=(sel==="both")?40:20; }
+    else if(service.includes("Window")) { const count = parseInt(document.getElementById("windowCount")?.value||1); price=count*3; }
+    else if(service.includes("Raking")) { const sel = document.getElementById("rakingSel")?.value||"front"; price=(sel==="both")?40:20; }
   }
   $("bookBtn").textContent="BOOKING..."; $("bookBtn").disabled=true;
   const {error}=await supabase.from('yard_bookings').insert({customer_name:name, phone, address, service, date:selectedDate, time:selectedTime, datetime:selectedDate+" "+selectedTime, notes, price, status:'pending'});
@@ -464,7 +466,7 @@ loadAvailability();
 </script>
 
 <!-- EQUIPMENT & WORKFLOW GUIDE MODAL - Employee ? button -->
-<div id="equipModal" style="display:none" class="fixed inset-0 bg-black/60 z-[70] p-4 flex items-center justify-center">
+<div id="equipModal" style="display:none" class="fixed inset-0 bg-black/60 z-[70] p-4 items-center justify-center">
   <div class="bg-white rounded-[20px] p-6 w-full max-w-[400px] max-h-[85vh] overflow-auto">
     <div class="flex justify-between items-center"><span class="font-bold text-[16px]" id="equipTitle">Job Guide</span><button id="closeEquip" class="w-8 h-8 bg-zinc-100 rounded-full">✕</button></div>
     <div id="equipContent" class="mt-4 text-[13px] leading-[1.5]"></div>
@@ -472,114 +474,27 @@ loadAvailability();
   </div>
 </div>
 
+
 <script>
 const EQUIP_GUIDES = {
-  "raking": {
-    title: "🍂 RAKING - Equipment & Workflow",
-    equipment: ["Rake", "Few trash bags (5-8)", "Dust pan", "Gloves"],
-    workflow: [
-      "ARRIVE: On time, knock, introduce: 'Hi, I'm [name] from Nocatee Yard Care for raking.'",
-      "WALKTHROUGH: Ask 'Front, back, or both?' Confirm where to put bagged leaves (curb or side).",
-      "SETUP: Put on gloves, lay out trash bags open, position rake.",
-      "RAKE: Rake leaves into small piles (3-4 ft), use dust pan for tight corners and small leaf piles.",
-      "BAG: Fill trash bags 3/4 full (not too heavy), tie securely.",
-      "DETAIL: Check under bushes, along fence, patio corners.",
-      "CLEANUP: Stack bags neatly where homeowner wants, sweep any leftover debris, remove all your trash.",
-      "FINISH: Walk property, show homeowner, ask 'Looks good?'",
-      "PRO TIP: Don't rake on windy day against wind. Work with wind."
-    ]
-  },
-  "weeding": {
-    title: "🌿 WEEDING - Equipment & Workflow",
-    equipment: ["Trash bag", "Bucket", "Gloves"],
-    workflow: [
-      "ARRIVE: On time, gloves on, 'I'm here for weeding.'",
-      "WALKTHROUGH: Ask which sides need weeding, point out areas.",
-      "SETUP: Place bucket nearby for weeds, trash bag open.",
-      "PULL: Pull weeds from root (get low, grip base), don't just snap tops. Put directly in bucket.",
-      "DETAIL: Get edges along driveway, house foundation, flower bed borders.",
-      "BAG: When bucket full, dump into trash bag.",
-      "CLEANUP: Pick up all weed debris, no dirt clumps left on concrete, bag tied.",
-      "FINISH: Show homeowner cleaned beds, ask if any spots missed.",
-      "PRO TIP: Weed after rain if possible - easier to pull roots. Don't throw weeds in their trash bin unless they say okay."
-    ]
-  },
-  "mailbox": {
-    title: "🎨 MAILBOX PAINT - Equipment & Workflow",
-    equipment: ["Black spray paint (Rust-Oleum or similar)", "Painters tape", "Drop cloth or cardboard", "Rag", "Gloves"],
-    workflow: [
-      "ARRIVE: 'Here for mailbox painting.' Confirm color (default black).",
-      "WALKTHROUGH: Check mailbox condition, ask homeowner about any special requests.",
-      "SETUP: Lay cardboard/drop cloth under and behind mailbox. Tape off post numbers, flag, and ground with painters tape. Wear gloves.",
-      "PREP: Wipe mailbox clean with rag - remove dirt, cobwebs.",
-      "PAINT: Light, even coats. 8-10 inches away. 2-3 light coats, 5 min between coats. Don't spray too thick (drips).",
-      "DETAIL: Paint all sides, top, bottom edge.",
-      "DRY: Let dry 10 min, carefully remove tape.",
-      "CLEANUP: Remove drop cloth, pick up tape pieces, no overspray on ground.",
-      "FINISH: Show homeowner, let them inspect. Remind not to touch for 1 hour.",
-      "PRO TIP: Never spray on windy day. If wind >10mph, reschedule. Cover house numbers with tape perfectly."
-    ]
-  },
-  "window": {
-    title: "✨ WINDOW CLEANING - Equipment & Workflow",
-    equipment: ["Windex", "Spray bottles filled with water", "Rags (microfiber if possible)", "Paper towels", "Bucket (optional)"],
-    workflow: [
-      "ARRIVE: 'Here for window cleaning.' Ask how many windows and which ones (inside/outside/both?).",
-      "WALKTHROUGH: Count windows with homeowner, confirm $3 each x count = total. Note any screens to remove.",
-      "SETUP: Fill spray bottle with water, have Windex and rags ready.",
-      "CLEAN: Step 1 - Spray water to remove loose dirt. Step 2 - Spray Windex. Step 3 - Wipe with rag in S-pattern top to bottom. Step 4 - Dry and polish with paper towel for streak-free.",
-      "DETAIL: Clean corners, sills, remove water drips. Don't leave Windex on frames.",
-      "INSIDE: If inside, lay rag on sill to catch drips, be careful not to touch walls with wet hands.",
-      "CLEANUP: Collect all used paper towels, take with you. No streaks left.",
-      "FINISH: Walk with homeowner, have them check each window in light. Ask satisfaction.",
-      "PRO TIP: Clean when sun NOT directly on window - less streaking. Do outside first, inside second."
-    ]
-  },
-  "trash": {
-    title: "🗑️ TRASH BIN CLEANING - Equipment & Workflow",
-    equipment: ["Ask homeowner: Can I use your hose? (required)", "Strong soap (dish soap or Pine-Sol)", "Large brushes / scrubbers", "Gloves", "Trash bag for gunk"],
-    workflow: [
-      "ARRIVE: 'Here for trash bin cleaning.' Ask: 'Can I use your hose? Where is it?'",
-      "WALKTHROUGH: Check bins, see how dirty. Put on gloves.",
-      "SETUP: Move bins to driveway where water can drain (not on grass). Hook up hose.",
-      "RINSE 1: Rinse bin inside thoroughly to remove loose trash.",
-      "SOAP: Add strong soap + some water, scrub inside walls, bottom, lid, and outside with large brush/scrubber. Get corners and bottom gunk.",
-      "SCRUB: Heavy scrub on stuck-on grime. Use brush for 2-3 min per bin.",
-      "RINSE 2: Rinse completely until water runs clear, no soap left.",
-      "DEODORIZE: Leave open to air dry a bit, light soap scent is good.",
-      "CLEANUP: Return bins to original spot, coil hose neatly, pick up any trash that fell.",
-      "FINISH: Show homeowner clean bins, no smell.",
-      "PRO TIP: Wear clothes you don't mind getting dirty. Bring extra gloves. If no hose available, can't do job - politely explain and reschedule."
-    ]
-  }
+  "raking": { title: "🍂 RAKING - Equipment & Workflow", equipment: ["Rake", "Few trash bags (5-8)", "Dust pan", "Gloves"], workflow: ["ARRIVE: On time, knock, introduce: 'Hi, I'm [name] from Nocatee Yard Care for raking.'", "WALKTHROUGH: Ask 'Front, back, or both?' Confirm where to put bagged leaves.", "SETUP: Put on gloves, lay out trash bags open.", "RAKE: Rake leaves into small piles, use dust pan for tight corners.", "BAG: Fill bags 3/4 full, tie securely.", "DETAIL: Check under bushes, along fence.", "CLEANUP: Stack bags neatly where homeowner wants, sweep leftover.", "FINISH: Walk property, show homeowner."] },
+  "weeding": { title: "🌿 WEEDING - Equipment & Workflow", equipment: ["Trash bag", "Bucket", "Gloves"], workflow: ["ARRIVE: On time, gloves on.", "WALKTHROUGH: Ask which sides.", "PULL: Pull weeds from root, put in bucket.", "DETAIL: Get edges along driveway, foundation.", "BAG: Dump bucket into trash bag.", "CLEANUP: No dirt clumps left.", "FINISH: Show homeowner."] },
+  "mailbox": { title: "🎨 MAILBOX PAINT - Equipment & Workflow", equipment: ["Black spray paint", "Painters tape", "Drop cloth or cardboard", "Rag", "Gloves"], workflow: ["ARRIVE: Confirm color (default black).", "SETUP: Lay cardboard, tape off numbers, flag, ground.", "PREP: Wipe clean.", "PAINT: Light even coats, 8-10 inches away, 2-3 coats, 5 min between.", "DRY: 10 min, remove tape.", "CLEANUP: Remove drop cloth, no overspray.", "FINISH: Show homeowner, don't touch 1 hour."] },
+  "window": { title: "✨ WINDOW CLEANING - Equipment & Workflow", equipment: ["Windex", "Spray bottles filled with water", "Rags", "Paper towels"], workflow: ["ARRIVE: Ask how many windows, which ones.", "COUNT: Confirm $3 each x count.", "CLEAN: Spray water to remove dirt, spray Windex, wipe with rag S-pattern, dry with paper towel.", "DETAIL: Clean corners, sills.", "CLEANUP: Collect used towels.", "FINISH: Walk with homeowner."] },
+  "trash": { title: "🗑️ TRASH BIN CLEANING - Equipment & Workflow", equipment: ["Ask homeowner: Can I use your hose?", "Strong soap", "Large brushes / scrubbers", "Gloves"], workflow: ["ARRIVE: Ask 'Can I use your hose?'", "RINSE 1: Rinse bin inside.", "SOAP: Add soap + water, scrub walls, bottom, lid, outside.", "RINSE 2: Rinse until clear.", "CLEANUP: Return bins, coil hose.", "FINISH: Show clean bins."] }
 };
-
-function getGuideKey(service){
-  service = service.toLowerCase();
-  if(service.includes("raking")) return "raking";
-  if(service.includes("weeding")) return "weeding";
-  if(service.includes("mailbox")) return "mailbox";
-  if(service.includes("window")) return "window";
-  if(service.includes("trash")) return "trash";
-  return "trash";
-}
-
+function getGuideKey(service){ service=service.toLowerCase(); if(service.includes("raking")) return "raking"; if(service.includes("weeding")) return "weeding"; if(service.includes("mailbox")) return "mailbox"; if(service.includes("window")) return "window"; if(service.includes("trash")) return "trash"; return "trash"; }
 function showEquipGuide(service){
-  const key = getGuideKey(service);
-  const guide = EQUIP_GUIDES[key];
-  document.getElementById('equipTitle').textContent = guide.title;
-  let html = `<div class="bg-amber-50 border border-amber-200 rounded-xl p-3"><div class="text-[11px] font-bold tracking-widest text-amber-800">EQUIPMENT NEEDED</div><ul class="mt-2 list-disc pl-5 text-[12px] text-zinc-800">` + guide.equipment.map(e=>`<li class="mt-1">${e}</li>`).join('') + `</ul></div>`;
-  html += `<div class="mt-4"><div class="text-[11px] font-bold tracking-widest text-zinc-500">WORKFLOW - ARRIVE TO LEAVE - BE PROFESSIONAL</div><ol class="mt-2 space-y-2">` + guide.workflow.map((step,i)=>`<li class="flex gap-2"><span class="font-bold text-zinc-400">${i+1}.</span><span>${step}</span></li>`).join('') + `</ol></div>`;
-  html += `<div class="mt-4 bg-zinc-900 text-white rounded-xl p-3 text-[11px]"><div class="font-bold">HOW TO BE PROFESSIONAL:</div><div class="mt-1 leading-[1.4]">• On time • Polo / clean shirt • No phone scrolling on job • Say please/thank you • Knock, don't ring bell repeatedly • Ask before using anything • Leave cleaner than you found it • Cash only after homeowner says job looks good • Text owner when done with photo</div></div>`;
-  document.getElementById('equipContent').innerHTML = html;
-  document.getElementById('equipModal').style.display = 'flex';
+  const key=getGuideKey(service);
+  const guide=EQUIP_GUIDES[key];
+  document.getElementById('equipTitle').textContent=guide.title;
+  let html=`<div class="bg-amber-50 border border-amber-200 rounded-xl p-3"><div class="text-[11px] font-bold tracking-widest text-amber-800">EQUIPMENT NEEDED</div><ul class="mt-2 list-disc pl-5 text-[12px] text-zinc-800">`+guide.equipment.map(e=>`<li class="mt-1">${e}</li>`).join('')+`</ul></div>`;
+  html+=`<div class="mt-4"><div class="text-[11px] font-bold tracking-widest text-zinc-500">WORKFLOW</div><ol class="mt-2 space-y-2">`+guide.workflow.map((s,i)=>`<li class="flex gap-2"><span class="font-bold text-zinc-400">${i+1}.</span><span>${s}</span></li>`).join('')+`</ol></div>`;
+  html+=`<div class="mt-4 bg-zinc-900 text-white rounded-xl p-3 text-[11px]"><div class="font-bold">BE PROFESSIONAL:</div><div class="mt-1">• On time • Clean shirt • No phone scrolling • Say please/thank you • Ask before using anything • Leave cleaner than found • Cash only after homeowner says good • Text owner when done</div></div>`;
+  document.getElementById('equipContent').innerHTML=html;
+  const m=document.getElementById('equipModal'); m.style.display='flex'; m.classList.add('flex');
 }
-
-document.addEventListener('click', (e)=>{
-  if(e.target.id==='closeEquip' || e.target.id==='closeEquip2'){
-    document.getElementById('equipModal').style.display='none';
-  }
-});
+document.addEventListener('click', (e)=>{ if(e.target.id==='closeEquip' || e.target.id==='closeEquip2'){ const m=document.getElementById('equipModal'); m.style.display='none'; m.classList.remove('flex'); } });
 </script>
 
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
